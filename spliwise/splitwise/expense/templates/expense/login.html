@@ -5,9 +5,14 @@
     <title>Title</title>
 </head>
 <body>
+{% if enter == 'success' %}
+<script>alert('user registered')</script>
+{% endif %}
+
 <center><br><br><br><br>
 Don't have an account? <a href="/register/">register</a><br><br>
-    <form method="post" action="/login/">
+    <form method="post" action="/dashboard/">
+        {% csrf_token %}
     <label>Username</label>
     <input type="text" name="username" placeholder="Email"><br><br>
         <label>Password</label>

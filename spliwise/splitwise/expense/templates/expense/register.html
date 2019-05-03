@@ -5,9 +5,13 @@
     <title>Title</title>
 </head>
 <body>
+{% if enter == 'error' %}
+<script>alert("Password Doesn't Match")</script>
+{% endif %}
 <center><br><br>
     Already have a account <a href="/login/">login</a><br><br>
     <form method="post" action="register">
+        {% csrf_token %}
         <label>First Name</label>
         <input type="text" name="fname"><br><br>
         <label>Last Name</label>

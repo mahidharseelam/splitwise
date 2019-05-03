@@ -15,17 +15,25 @@ def register(request):
         password = request.POST.get('password')
         cpassword = request.POST.get('cpassword')
 
-        if(password == cpassword):
+        if password == cpassword:
             user = users(first_name=fname,last_name=lname,email=email,contact=contact,password=password)
             user.save()
-            yield HttpResponse("<script>alert('user registerd')</script>")
+            enter = "success"
+            context = {'enter':enter}
+            return render(request,"expense/login.html",context)
         else:
-            yield HttpResponse("<script>alert('Password Doesn't Match')</script>")
+            enter = "error"
+            context = {'enter': enter}
+            return render(request,"expense/register.html",context)
     return render(request,'expense/register.html',context=None)
 
 @csrf_exempt
 def login(request):
+    return render(request,'expense/login.html',context=None)
+
+@csrf_exempt
+def  dashboard(request):
     if request.method=='POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-    return render(request,'expense/login.html',context=None)
+
